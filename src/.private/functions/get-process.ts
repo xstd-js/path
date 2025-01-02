@@ -1,4 +1,4 @@
-export function getProcess(): NodeJS.Process | never {
+export function getProcess(): any /*NodeJS.Process*/ | never {
   if ('process' in globalThis) {
     return (globalThis as any).process;
   } else {

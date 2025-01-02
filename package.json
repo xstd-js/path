@@ -32,7 +32,7 @@
   },
   "packageManager": "yarn@4.6.0",
   "fabrique": {
-    "version": "0.2.4",
+    "version": "0.2.5",
     "type": "lib"
   },
   "dependencies": {

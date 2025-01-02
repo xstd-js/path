@@ -1,6 +1,8 @@
-import { cp, glob, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, readFile, rm, writeFile } from 'node:fs/promises';
 import { isAbsolute, join } from 'node:path';
+import process from 'node:process';
 import { cmd } from '../helpers/cmd.js';
+import { exploreDirectoryFiles } from '../helpers/explore-directory.js';
 
 /**
  * Builds the lib.
@@ -78,6 +80,10 @@ async function buildScss(sourcePath, destinationPath) {
   await buildScssIndexFile(destinationPath);
 }
 
+function generateExportEsmLine(path) {
+  return `export * from './${path.replaceAll('\\', '/').slice(0, -3)}.js';\n`;
+}
+
 /**
  * Builds the typescript index file used to export all public APIs.
  *
@@ -87,25 +93,26 @@ async function buildScss(sourcePath, destinationPath) {
 async function buildTypescriptIndexFile(cwd = process.cwd()) {
   console.log('Building typescript index file...');
 
-  const content = (
-    await Array.fromAsync(
-      glob('./**/*.ts', {
-        cwd,
-        exclude: (path) => {
-          return (
-            path.endsWith('.spec.ts') ||
-            path.endsWith('.test.ts') ||
-            path.includes('.private') ||
-            path.includes('.protected')
-          );
-        },
-      }),
-    )
-  )
-    .map((path) => {
-      return `export * from './${path.replaceAll('\\', '/').slice(0, -3)}.js';`;
-    })
-    .join('\n');
+  let content = '';
+
+  for await (const path of exploreDirectoryFiles(cwd, {
+    relativeTo: cwd,
+    pick: (path, { isFile }) => {
+      if (isFile) {
+        return (
+          path.endsWith('.ts') &&
+          !path.endsWith('.spec.ts') &&
+          !path.endsWith('.test.ts') &&
+          !path.endsWith('.private.ts') &&
+          !path.endsWith('.protected.ts')
+        );
+      } else {
+        return !path.endsWith('.private') && !path.endsWith('.protected');
+      }
+    },
+  })) {
+    content += generateExportEsmLine(path);
+  }
 
   if (content === '') {
     throw new Error('Nothing exported.');
@@ -126,22 +133,22 @@ async function buildTypescriptIndexFile(cwd = process.cwd()) {
 async function buildTypescriptProtectedIndexFile(cwd = process.cwd()) {
   console.log('Building typescript protected index file...');
 
-  const content = (
-    await Array.fromAsync(
-      glob('{./**/*.protected/**/*.ts,./**/*.protected.ts,}', {
-        cwd,
-        exclude: (path) => {
-          return (
-            path.endsWith('.spec.ts') || path.endsWith('.test.ts') || path.includes('.private')
-          );
-        },
-      }),
-    )
-  )
-    .map((path) => {
-      return `export * from './${path.replaceAll('\\', '/').slice(0, -3)}.js';`;
-    })
-    .join('\n');
+  let content = '';
+
+  for await (const path of exploreDirectoryFiles(cwd, {
+    relativeTo: cwd,
+    pick: (path, { isFile }) => {
+      if (isFile) {
+        return (
+          path.endsWith('.protected.ts') || (path.endsWith('.ts') && path.includes('.protected/'))
+        );
+      } else {
+        return !path.endsWith('.private');
+      }
+    },
+  })) {
+    content += generateExportEsmLine(path);
+  }
 
   if (content === '') {
     return null;
@@ -175,13 +182,26 @@ async function compileTypescript(cwd = process.cwd()) {
 async function copyTypescriptFiles(sourcePath, destinationPath) {
   console.log('Copying typescript files...');
 
-  for await (const path of glob('./**/!(*.spec|*.test).ts', { cwd: sourcePath })) {
+  for await (const path of exploreDirectoryFiles(sourcePath, {
+    relativeTo: sourcePath,
+    pick: (path, { isFile }) => {
+      if (isFile) {
+        return path.endsWith('.ts') && !path.endsWith('.spec.ts') && !path.endsWith('.test.ts');
+      } else {
+        return true;
+      }
+    },
+  })) {
     await cp(join(sourcePath, path), join(destinationPath, path));
   }
 }
 
+function generateExportScssLine(path) {
+  return `@forward './${path.slice(0, -5)}';\n`;
+}
+
 /**
- * Builds the typescript index file used to export all public APIs.
+ * Builds the scss index file used to export all public styles.
  *
  * @param {string} cwd
  * @return {Promise<void>}
@@ -189,12 +209,24 @@ async function copyTypescriptFiles(sourcePath, destinationPath) {
 async function buildScssIndexFile(cwd = process.cwd()) {
   console.log('Building scss index file...');
 
-  // TODO exclude directories too
-  const content = (await Array.fromAsync(glob('./**/!(*.private).scss', { cwd })))
-    .map((path) => {
-      return `@forward './${path.slice(0, -5)}';`;
-    })
-    .join('\n');
+  let content = '';
+
+  for await (const path of exploreDirectoryFiles(cwd, {
+    relativeTo: cwd,
+    pick: (path, { isFile }) => {
+      if (isFile) {
+        return (
+          path.endsWith('.scss') &&
+          !path.endsWith('.protected.scss') &&
+          !path.endsWith('.private.scss')
+        );
+      } else {
+        return !path.endsWith('.private') && !path.endsWith('.protected');
+      }
+    },
+  })) {
+    content += generateExportScssLine(path);
+  }
 
   if (content === '') {
     console.log('=> No scss file to export.');
@@ -214,7 +246,16 @@ async function buildScssIndexFile(cwd = process.cwd()) {
 async function copyScssFiles(sourcePath, destinationPath) {
   console.log('Copying scss files...');
 
-  for await (const path of glob('./**/!(*.private).scss', { cwd: sourcePath })) {
+  for await (const path of exploreDirectoryFiles(sourcePath, {
+    relativeTo: sourcePath,
+    pick: (path, { isFile }) => {
+      if (isFile) {
+        return path.endsWith('.scss');
+      } else {
+        return true;
+      }
+    },
+  })) {
     // await cp(join(sourcePath, path), join(destinationPath, path));
     await writeFile(
       join(destinationPath, path),
