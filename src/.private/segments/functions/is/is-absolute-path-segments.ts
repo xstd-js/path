@@ -1,7 +1,7 @@
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
-export interface IIsAbsolutePathSegmentsOptions {
+export interface IsAbsolutePathSegmentsOptions {
   readonly rootRegExp: RegExp;
 }
 
@@ -9,8 +9,8 @@ export interface IIsAbsolutePathSegmentsOptions {
  * Returns `true` if the path is absolute.
  */
 export function isAbsolutePathSegments(
-  segments: IPathSegments,
-  { rootRegExp }: IIsAbsolutePathSegmentsOptions,
+  segments: PathSegments,
+  { rootRegExp }: IsAbsolutePathSegmentsOptions,
 ): boolean {
   return isRootPathSegment(segments[0], rootRegExp);
 }

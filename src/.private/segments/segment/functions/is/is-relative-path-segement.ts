@@ -1,8 +1,8 @@
-import type { IUncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.type.js';
+import type { UncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.js';
 
 /**
  * Returns true if 'segment' is a relative segment
  */
-export function isRelativePathSegment(segment: IUncheckedPathSegment): boolean {
+export function isRelativePathSegment(segment: UncheckedPathSegment): boolean {
   return segment === '.' || segment === '..';
 }

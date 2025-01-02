@@ -1,19 +1,16 @@
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
-import {
-  type IIsRootPathSegmentsOptions,
-  isRootPathSegments,
-} from '../is/is-root-path-segments.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { isRootPathSegments, type IsRootPathSegmentsOptions } from '../is/is-root-path-segments.js';
 
-export interface IPathSegmentsToStringPathOptions extends IIsRootPathSegmentsOptions {
+export interface PathSegmentsToStringPathOptions extends IsRootPathSegmentsOptions {
   readonly separator: string;
 }
 
 /**
- * Converts some`IPathSegments` into a string path.
+ * Converts some`PathSegments` into a string path.
  */
 export function convertPathSegmentsToStringPath(
-  segments: IPathSegments,
-  { separator, ...options }: IPathSegmentsToStringPathOptions,
+  segments: PathSegments,
+  { separator, ...options }: PathSegmentsToStringPathOptions,
 ): string {
   return isRootPathSegments(segments, options) ? segments[0] + separator : segments.join(separator);
 }

@@ -1,4 +1,4 @@
 /**
- * IPathSegment, but this one could be invalid
+ * PathSegment, but this one could be invalid.
  */
-export type IUncheckedPathSegment = string;
+export type UncheckedPathSegment = string;

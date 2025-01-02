@@ -1,9 +1,9 @@
-import type { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import type { IPathSegment } from '../../../../types/segments/segment/path-segment.type.js';
-import type { IUncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.type.js';
+import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import type { PathSegment } from '../../../../types/segments/segment/path-segment.js';
+import type { UncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
-export interface IPushSegmentIntoMutablePathSegmentsOptions {
+export interface PushSegmentIntoMutablePathSegmentsOptions {
   readonly rootRegExp: RegExp;
 }
 
@@ -14,15 +14,15 @@ export interface IPushSegmentIntoMutablePathSegmentsOptions {
  *  - the path remains valid
  */
 export function pushSegmentIntoMutablePathSegments(
-  segments: IMutablePathSegments,
-  segment: IUncheckedPathSegment,
-  { rootRegExp }: IPushSegmentIntoMutablePathSegmentsOptions,
+  segments: MutablePathSegments,
+  segment: UncheckedPathSegment,
+  { rootRegExp }: PushSegmentIntoMutablePathSegmentsOptions,
 ): void {
   if (segment === '.') {
     // nothing to do
     /* segment is not . */
   } else if (segment === '..') {
-    const lastSegment: IPathSegment = segments[segments.length - 1];
+    const lastSegment: PathSegment = segments[segments.length - 1];
     if (lastSegment === '.') {
       // path is ['.']
       segments[0] = segment; // path becomes ['..']

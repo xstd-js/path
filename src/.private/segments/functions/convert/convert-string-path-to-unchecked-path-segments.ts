@@ -1,17 +1,17 @@
-import type { IUncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.type.js';
+import type { UncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.js';
 import { SLASH_REGEXP } from '../../../platform-config/constants/slash-regexp.constant.js';
 
-export interface IConvertStringPathToUncheckedPathSegmentsOptions {
+export interface ConvertStringPathToUncheckedPathSegmentsOptions {
   readonly rootRegExp: RegExp;
 }
 
 /**
- * Converts a string path to an `IUncheckedPathSegments`.
+ * Converts a string path to an `UncheckedPathSegments`.
  */
 export function convertStringPathToUncheckedPathSegments(
   path: string,
-  { rootRegExp }: IConvertStringPathToUncheckedPathSegmentsOptions,
-): IUncheckedPathSegments {
+  { rootRegExp }: ConvertStringPathToUncheckedPathSegmentsOptions,
+): UncheckedPathSegments {
   if (path === '') {
     return [];
   } else {

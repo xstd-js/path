@@ -1,11 +1,11 @@
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
 import { isPureParentDirectoryPathSegments } from '../is/is-pure-parent-directory-path-segments.js';
 
 /**
  * Returns the parent directory of `segments`:
  *  - returns null if path has no parent directory (if path is `['.']` or `[root]`)
  */
-export function getDirnameOfPathSegments(segments: IPathSegments): IPathSegments | null {
+export function getDirnameOfPathSegments(segments: PathSegments): PathSegments | null {
   if (isPureParentDirectoryPathSegments(segments)) {
     // path is ['..', ...'..']
     return [...segments, '..'];

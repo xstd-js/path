@@ -1,20 +1,21 @@
-import type { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import type { IPathSegment } from '../../../../types/segments/segment/path-segment.type.js';
+import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import type { PathSegment } from '../../../../types/segments/segment/path-segment.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
-export interface IForcePathSegmentsAsAbsoluteOptions {
+export interface ForcePathSegmentsAsAbsoluteOptions {
   readonly rootRegExp: RegExp;
 }
+
 /**
  * Converts a relative path to an absolute path, by appending `rootSegment` at the beginning of the path.
  */
 export function forcePathSegmentsAsAbsolute(
-  segments: IMutablePathSegments,
-  rootSegment: IPathSegment,
-  { rootRegExp }: IForcePathSegmentsAsAbsoluteOptions,
+  segments: MutablePathSegments,
+  rootSegment: PathSegment,
+  { rootRegExp }: ForcePathSegmentsAsAbsoluteOptions,
 ): void {
   if (isRootPathSegment(rootSegment, rootRegExp)) {
-    const firstSegment: IPathSegment = segments[0];
+    const firstSegment: PathSegment = segments[0];
     if (firstSegment === '.') {
       segments[0] = rootSegment;
     } else if (firstSegment === '..') {

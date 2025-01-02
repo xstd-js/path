@@ -446,10 +446,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xstd/is-type@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@xstd/is-type@npm:0.0.2"
+  checksum: 10c0/ad80cc3e3a44ed0164ec6fc3a8b103f54898b1e6ab4454221f285cb4b7c1fde018b35f66c0e2194409f4dd1f9375763f321f70b0e85d9666e9d7adb98fd89c30
+  languageName: node
+  linkType: hard
+
 "@xstd/path@workspace:.":
   version: 0.0.0-use.local
   resolution: "@xstd/path@workspace:."
   dependencies:
+    "@xstd/is-type": "npm:^0.0.2"
     prettier: "npm:^3.4.2"
     prettier-plugin-organize-imports: "npm:^4.1.0"
     typescript: "npm:^5.7.2"

@@ -1,15 +1,15 @@
-import type { IPathSegment } from '../../../../../types/segments/segment/path-segment.type.js';
-import type { ISpecialSegmentsAllowedForBasename } from '../../../../../types/segments/special-segments-allowed-for-basename.type.js';
+import type { PathSegment } from '../../../../../types/segments/segment/path-segment.js';
+import type { SpecialSegmentsAllowedForBasename } from '../../../../../types/segments/special-segments-allowed-for-basename.js';
 import { isRelativePathSegment } from '../is/is-relative-path-segement.js';
 import { isRootPathSegment } from '../is/is-root-path-segement.js';
 import { getBasenameOfEntryPathSegment } from './get-basename-of-entry-path-segment.js';
 
-export const DEFAULT_SPECIAL_SEGMENTS_ALLOWED_FOR_BASENAME: Set<ISpecialSegmentsAllowedForBasename> =
-  new Set<ISpecialSegmentsAllowedForBasename>();
+export const DEFAULT_SPECIAL_SEGMENTS_ALLOWED_FOR_BASENAME: Set<SpecialSegmentsAllowedForBasename> =
+  new Set<SpecialSegmentsAllowedForBasename>();
 
-export interface IGetBasenameOfPathSegmentOptions {
+export interface GetBasenameOfPathSegmentOptions {
   readonly rootRegExp: RegExp;
-  readonly allowedSpecialSegments?: Set<ISpecialSegmentsAllowedForBasename>;
+  readonly allowedSpecialSegments?: Set<SpecialSegmentsAllowedForBasename>;
 }
 
 /**
@@ -18,12 +18,12 @@ export interface IGetBasenameOfPathSegmentOptions {
  * INFO: 'basename' must be a valid entry, including relative and root
  */
 export function getBasenameOfPathSegment(
-  segment: IPathSegment,
+  segment: PathSegment,
   ext: string | undefined,
   {
     rootRegExp,
     allowedSpecialSegments = DEFAULT_SPECIAL_SEGMENTS_ALLOWED_FOR_BASENAME,
-  }: IGetBasenameOfPathSegmentOptions,
+  }: GetBasenameOfPathSegmentOptions,
 ): string | null {
   if (isRelativePathSegment(segment)) {
     return allowedSpecialSegments.has(segment as '.' | '..') ? segment : null;

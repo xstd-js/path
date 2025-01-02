@@ -1,6 +1,6 @@
 {
   "name": "@xstd/path",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "main": "./index.js",
   "scripts": {
@@ -13,7 +13,10 @@
     "fb:rc": "node fabrique/actions/cli/build-and-publish.cli.js --mode rc"
   },
   "description": "A better path implementation",
-  "keywords": [],
+  "keywords": [
+    "Path",
+    "URL"
+  ],
   "author": "Valentin Richard",
   "license": "MIT",
   "access": "public",
@@ -31,5 +34,8 @@
   "fabrique": {
     "version": "0.2.4",
     "type": "lib"
+  },
+  "dependencies": {
+    "@xstd/is-type": "^0.0.2"
   }
 }

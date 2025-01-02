@@ -1,13 +1,12 @@
-import type { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
+import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
 import {
-  type IPushSegmentIntoMutablePathSegmentsOptions,
   pushSegmentIntoMutablePathSegments,
+  type PushSegmentIntoMutablePathSegmentsOptions,
 } from '../mutate/push-segment-into-mutable-path-segments.js';
 import { getCommonBaseOfManyPathSegments } from './get-common-base-of-many-path-segments.js';
 
-export interface IGetRelativePathSegmentsOptions
-  extends IPushSegmentIntoMutablePathSegmentsOptions {}
+export interface GetRelativePathSegmentsOptions extends PushSegmentIntoMutablePathSegmentsOptions {}
 
 /**
  * Returns the relative `IPathSegments` between `from` and `to`:
@@ -15,15 +14,15 @@ export interface IGetRelativePathSegmentsOptions
  *  - else `['..' | '.', ...]`
  */
 export function getRelativePathSegments(
-  from: IPathSegments,
-  to: IPathSegments,
-  options: IGetRelativePathSegmentsOptions,
-): IPathSegments | null {
-  const commonBase: IPathSegments | null = getCommonBaseOfManyPathSegments([from, to]);
+  from: PathSegments,
+  to: PathSegments,
+  options: GetRelativePathSegmentsOptions,
+): PathSegments | null {
+  const commonBase: PathSegments | null = getCommonBaseOfManyPathSegments([from, to]);
   if (commonBase === null) {
     return null;
   } else {
-    const relativePath: IMutablePathSegments = ['.'];
+    const relativePath: MutablePathSegments = ['.'];
     for (let i: number = commonBase.length; i < from.length; i++) {
       pushSegmentIntoMutablePathSegments(relativePath, '..', options);
     }

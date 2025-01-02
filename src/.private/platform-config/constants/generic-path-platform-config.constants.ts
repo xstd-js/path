@@ -1,4 +1,4 @@
-import type { IPathPlatformConfig } from '../../../types/platform-config/path-platform-config.type.js';
+import type { PathPlatformConfig } from '../../../types/platform-config/path-platform-config.js';
 import {
   POSIX_DELIMITER_PATTERN,
   POSIX_INVALID_PATH_SEGMENT_PATTERN_PATTERN,
@@ -22,7 +22,7 @@ export const INVALID_PATH_SEGMENT_PATTERN_REGEXP: RegExp = new RegExp(
   `(${INVALID_PATH_SEGMENT_PATTERN_PATTERN})`,
 );
 
-export const GENERIC_PATH_PLATFORM_CONFIG: IPathPlatformConfig = Object.freeze({
+export const GENERIC_PATH_PLATFORM_CONFIG: PathPlatformConfig = Object.freeze({
   rootPattern: ROOT_PATTERN,
   rootRegExp: ROOT_REGEXP,
   separator: POSIX_SEPARATOR,

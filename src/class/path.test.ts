@@ -1,5 +1,5 @@
-import { describe, expect, it } from '@jest/globals';
-import { Path } from './path.class.js';
+import { describe, expect, it } from 'vitest';
+import { Path } from './path';
 
 describe('Path', () => {
   describe('constructor', () => {

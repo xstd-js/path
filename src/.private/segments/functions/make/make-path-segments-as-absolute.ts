@@ -1,22 +1,22 @@
-import { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import { IPathSegments } from '../../../../types/segments/path-segments.type.js';
-import { IPathSegment } from '../../../../types/segments/segment/path-segment.type.js';
+import { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { PathSegments } from '../../../../types/segments/path-segments.js';
+import { PathSegment } from '../../../../types/segments/segment/path-segment.js';
 import {
   forcePathSegmentsAsAbsolute,
-  IForcePathSegmentsAsAbsoluteOptions,
+  ForcePathSegmentsAsAbsoluteOptions,
 } from '../mutate/force-path-segments-as-absolute.js';
 
-export interface IMakePathSegmentsAsAbsoluteOptions extends IForcePathSegmentsAsAbsoluteOptions {}
+export interface MakePathSegmentsAsAbsoluteOptions extends ForcePathSegmentsAsAbsoluteOptions {}
 
 /**
  * @see forcePathSegmentsAsAbsolute
  */
 export function makePathSegmentsAsAbsolute(
-  segments: IPathSegments,
-  rootSegment: IPathSegment,
-  options: IMakePathSegmentsAsAbsoluteOptions,
-): IPathSegments {
-  const _segments: IMutablePathSegments = segments.slice();
+  segments: PathSegments,
+  rootSegment: PathSegment,
+  options: MakePathSegmentsAsAbsoluteOptions,
+): PathSegments {
+  const _segments: MutablePathSegments = segments.slice();
   forcePathSegmentsAsAbsolute(_segments, rootSegment, options);
   return _segments;
 }

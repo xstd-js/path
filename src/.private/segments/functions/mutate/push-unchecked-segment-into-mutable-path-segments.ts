@@ -1,13 +1,13 @@
-import type { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import type { IUncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.type.js';
+import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import type { UncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.js';
 import { isValidPathSegment } from '../../segment/functions/is/is-valid-path-segement.js';
 import {
-  type IPushSegmentIntoMutablePathSegmentsOptions,
   pushSegmentIntoMutablePathSegments,
+  type PushSegmentIntoMutablePathSegmentsOptions,
 } from './push-segment-into-mutable-path-segments.js';
 
-export interface IPushUncheckedSegmentIntoMutablePathSegmentsOptions
-  extends IPushSegmentIntoMutablePathSegmentsOptions {
+export interface PushUncheckedSegmentIntoMutablePathSegmentsOptions
+  extends PushSegmentIntoMutablePathSegmentsOptions {
   readonly invalidPathSegmentRegExp: RegExp;
 }
 
@@ -15,9 +15,9 @@ export interface IPushUncheckedSegmentIntoMutablePathSegmentsOptions
  * @see pushSegmentIntoMutablePathSegments
  */
 export function pushUncheckedSegmentIntoMutablePathSegments(
-  segments: IMutablePathSegments,
-  segment: IUncheckedPathSegment,
-  options: IPushUncheckedSegmentIntoMutablePathSegmentsOptions,
+  segments: MutablePathSegments,
+  segment: UncheckedPathSegment,
+  options: PushUncheckedSegmentIntoMutablePathSegmentsOptions,
 ): void {
   if (isValidPathSegment(segment, options.invalidPathSegmentRegExp)) {
     return pushSegmentIntoMutablePathSegments(segments, segment, options);

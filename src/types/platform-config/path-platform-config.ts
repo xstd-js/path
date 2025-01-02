@@ -1,4 +1,4 @@
-export interface IPathPlatformConfig {
+export interface PathPlatformConfig {
   readonly rootPattern: string;
   readonly rootRegExp: RegExp;
   readonly separator: string;

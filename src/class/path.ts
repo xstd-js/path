@@ -1,5 +1,5 @@
+import { isObject } from '@xstd/is-type';
 import { getProcess } from '../.private/functions/get-process.js';
-import { isObject } from '../.private/functions/is-object.js';
 import { GENERIC_PATH_PLATFORM_CONFIG } from '../.private/platform-config/constants/generic-path-platform-config.constants.js';
 import { POSIX_PATH_PLATFORM_CONFIG } from '../.private/platform-config/constants/posix-path-platform-config.constants.js';
 import { WINDOWS_PATH_PLATFORM_CONFIG } from '../.private/platform-config/constants/windows-path-platform-config.constants.js';
@@ -22,12 +22,12 @@ import { makePathSegmentsAsAbsolute } from '../.private/segments/functions/make/
 import { makePathSegmentsAsRelative } from '../.private/segments/functions/make/make-path-segments-as-relative.js';
 import { resolvePathSegmentsWithOptionalRoot } from '../.private/segments/functions/resolve/resolve-path-segments-with-optional-root.js';
 
+import type { PathInput } from '../types/path-input.js';
+
 import type { PathPlatformConfig } from '../types/platform-config/path-platform-config.js';
 import type { WindowsPathPlatformConfig } from '../types/platform-config/windows-path-platform-config.js';
-import type { ISpecialSegmentsAllowedForBasename } from '../types/segments/special-segments-allowed-for-basename.type.js';
-
-import type { PathInput } from '../types/path-input.js';
-import type { IPathSegments } from '../types/segments/path-segments.type.js';
+import type { PathSegments } from '../types/segments/path-segments.js';
+import type { SpecialSegmentsAllowedForBasename } from '../types/segments/special-segments-allowed-for-basename.js';
 import type { StemAndExtTuple } from '../types/stem-and-ext-tuple.js';
 import { isPath } from './functions/is-path.js';
 
@@ -35,7 +35,7 @@ let BYPASS_PATH_CONSTRUCT: boolean = false;
 
 function createPathFromPathInstance(
   instance: Path,
-  segments: IPathSegments = instance.segments,
+  segments: PathSegments = instance.segments,
   config: PathPlatformConfig = instance.config,
 ): Path {
   BYPASS_PATH_CONSTRUCT = true;
@@ -82,12 +82,12 @@ export class Path {
     return isPath(path) ? path : new Path(path, config);
   }
 
-  readonly segments: IPathSegments;
+  readonly segments: PathSegments;
   readonly config: PathPlatformConfig;
 
   constructor(path: PathInput, config?: PathPlatformConfig) {
     if (BYPASS_PATH_CONSTRUCT) {
-      this.segments = path as IPathSegments;
+      this.segments = path as PathSegments;
       this.config = config as PathPlatformConfig;
     } else {
       if (config === undefined) {
@@ -173,7 +173,7 @@ export class Path {
    * @see dirname
    */
   dirnameOptional(): Path | null {
-    const dirname: IPathSegments | null = getDirnameOfPathSegments(this.segments);
+    const dirname: PathSegments | null = getDirnameOfPathSegments(this.segments);
     return dirname === null ? null : createPathFromPathInstance(this, dirname);
   }
 
@@ -191,7 +191,7 @@ export class Path {
    */
   basename(
     ext?: string,
-    allowedSpecialSegments?: Iterable<ISpecialSegmentsAllowedForBasename>,
+    allowedSpecialSegments?: Iterable<SpecialSegmentsAllowedForBasename>,
   ): string | never {
     const basename: string | null = this.basenameOptional(ext, allowedSpecialSegments);
     if (basename === null) {
@@ -208,7 +208,7 @@ export class Path {
    */
   basenameOptional(
     ext?: string,
-    allowedSpecialSegments?: Iterable<ISpecialSegmentsAllowedForBasename>,
+    allowedSpecialSegments?: Iterable<SpecialSegmentsAllowedForBasename>,
   ): string | null {
     return getBasenameOfPathSegments(
       this.segments,
@@ -217,7 +217,7 @@ export class Path {
         ? this.config
         : {
             ...this.config,
-            allowedSpecialSegments: new Set<ISpecialSegmentsAllowedForBasename>(
+            allowedSpecialSegments: new Set<SpecialSegmentsAllowedForBasename>(
               allowedSpecialSegments,
             ),
           },
@@ -268,10 +268,10 @@ export class Path {
    * @see commonBase
    */
   commonBaseOptional(...paths: PathInput[]): Path | null {
-    const commonBase: IPathSegments | null = getCommonBaseOfManyPathSegments([
+    const commonBase: PathSegments | null = getCommonBaseOfManyPathSegments([
       this.segments,
-      ...paths.map<IPathSegments>(
-        (path: PathInput): IPathSegments => Path.of(path, this.config).segments,
+      ...paths.map<PathSegments>(
+        (path: PathInput): PathSegments => Path.of(path, this.config).segments,
       ),
     ]);
     return commonBase === null ? null : createPathFromPathInstance(this, commonBase);
@@ -299,7 +299,7 @@ export class Path {
    * @see relative
    */
   relativeOptional(path: PathInput): Path | null {
-    const relativePath: IPathSegments | null = getRelativePathSegments(
+    const relativePath: PathSegments | null = getRelativePathSegments(
       this.segments,
       Path.of(path, this.config).segments,
       this.config,
@@ -322,8 +322,8 @@ export class Path {
       joinManyPathSegments(
         [
           this.segments,
-          ...paths.map<IPathSegments>(
-            (path: PathInput): IPathSegments => Path.of(path, this.config).segments,
+          ...paths.map<PathSegments>(
+            (path: PathInput): PathSegments => Path.of(path, this.config).segments,
           ),
         ],
         this.config,
@@ -364,7 +364,7 @@ export class Path {
    * @param root - default: `process.cwd()`
    */
   makeAbsolute(root?: PathInput): Path {
-    const _root: IPathSegments =
+    const _root: PathSegments =
       root === undefined
         ? getProcessPathSegments(this.config)
         : Path.of(root, this.config).segments;
@@ -386,8 +386,7 @@ export class Path {
   /* TO */
 
   /**
-   * Returns the concatenated string of the different segments of this Path, separated by `separa
-   * tor`.
+   * Returns the concatenated string of the different segments of this Path, separated by `separator`.
    * @param separator - default: `config.separator`
    */
   toString(separator?: string): string {

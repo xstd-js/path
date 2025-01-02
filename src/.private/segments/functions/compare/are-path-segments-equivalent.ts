@@ -1,11 +1,11 @@
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
 
 /**
  * Returns `true` if `segmentsA` and `segmentB` are equivalent.
  */
 export function arePathSegmentsEquivalent(
-  segmentsA: IPathSegments,
-  segmentB: IPathSegments,
+  segmentsA: PathSegments,
+  segmentB: PathSegments,
 ): boolean {
   const length: number = segmentsA.length;
   if (segmentB.length === length) {

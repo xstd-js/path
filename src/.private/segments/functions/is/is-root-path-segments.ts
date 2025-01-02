@@ -1,13 +1,13 @@
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
-export interface IIsRootPathSegmentsOptions {
+export interface IsRootPathSegmentsOptions {
   readonly rootRegExp: RegExp;
 }
 
 export function isRootPathSegments(
-  segments: IPathSegments,
-  { rootRegExp }: IIsRootPathSegmentsOptions,
+  segments: PathSegments,
+  { rootRegExp }: IsRootPathSegmentsOptions,
 ): boolean {
   return segments.length === 1 && isRootPathSegment(segments[0], rootRegExp);
 }

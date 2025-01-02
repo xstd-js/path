@@ -1,15 +1,15 @@
-import type { IMutablePathSegments } from '../../../../types/segments/mutable-path-segments.type.js';
-import type { IPathSegments } from '../../../../types/segments/path-segments.type.js';
-import type { IUncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.type.js';
-import type { IUncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.type.js';
+import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import type { UncheckedPathSegment } from '../../../../types/segments/segment/unchecked-path-segment.js';
+import type { UncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 import {
-  IPushUncheckedSegmentIntoMutablePathSegmentsOptions,
   pushUncheckedSegmentIntoMutablePathSegments,
+  PushUncheckedSegmentIntoMutablePathSegmentsOptions,
 } from '../mutate/push-unchecked-segment-into-mutable-path-segments.js';
 
-export interface IConvertUncheckedPathSegmentsIntoPathSegments
-  extends IPushUncheckedSegmentIntoMutablePathSegmentsOptions {
+export interface ConvertUncheckedPathSegmentsIntoPathSegments
+  extends PushUncheckedSegmentIntoMutablePathSegmentsOptions {
   readonly rootRegExp: RegExp;
 }
 
@@ -18,15 +18,15 @@ export interface IConvertUncheckedPathSegmentsIntoPathSegments
  * See`IPathSegments` for more details.
  */
 export function convertUncheckedPathSegmentsIntoPathSegments(
-  segments: IUncheckedPathSegments,
-  options: IConvertUncheckedPathSegmentsIntoPathSegments,
-): IPathSegments {
+  segments: UncheckedPathSegments,
+  options: ConvertUncheckedPathSegmentsIntoPathSegments,
+): PathSegments {
   const length: number = segments.length;
   if (length === 0) {
     return ['.'];
   } else {
-    const normalized: IMutablePathSegments = [];
-    const firstSegment: IUncheckedPathSegment = segments[0];
+    const normalized: MutablePathSegments = [];
+    const firstSegment: UncheckedPathSegment = segments[0];
     let i: number = 0;
     if (isRootPathSegment(firstSegment, options.rootRegExp)) {
       normalized.push(firstSegment);

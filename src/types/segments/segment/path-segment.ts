@@ -1,5 +1,5 @@
 /**
- * Represents a segment of a Path.
+ * Represents a segment of a path.
  * This segment is considered valid.
  */
-export type IPathSegment = string;
+export type PathSegment = string;

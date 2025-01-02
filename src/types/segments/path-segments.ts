@@ -1,7 +1,7 @@
 import type { PathSegment } from './segment/path-segment.js';
 
 /**
- * Represents a list of segments forming a Path.
+ * Represents a list of segments forming a path.
  * This list is considered valid.
  */
-export type IPathSegments = readonly PathSegment[];
+export type PathSegments = readonly PathSegment[];
