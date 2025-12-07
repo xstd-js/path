@@ -22,20 +22,20 @@ import { makePathSegmentsAsAbsolute } from '../.private/segments/functions/make/
 import { makePathSegmentsAsRelative } from '../.private/segments/functions/make/make-path-segments-as-relative.js';
 import { resolvePathSegmentsWithOptionalRoot } from '../.private/segments/functions/resolve/resolve-path-segments-with-optional-root.js';
 
-import type { PathInput } from '../types/path-input.js';
+import { type PathInput } from '../types/path-input.js';
 
-import type { PathPlatformConfig } from '../types/platform-config/path-platform-config.js';
-import type { WindowsPathPlatformConfig } from '../types/platform-config/windows-path-platform-config.js';
-import type { PathSegments } from '../types/segments/path-segments.js';
-import type { SpecialSegmentsAllowedForBasename } from '../types/segments/special-segments-allowed-for-basename.js';
-import type { StemAndExtTuple } from '../types/stem-and-ext-tuple.js';
+import { type PathPlatformConfig } from '../types/platform-config/path-platform-config.js';
+import { type WindowsPathPlatformConfig } from '../types/platform-config/windows-path-platform-config.js';
+import { type PathSegments } from '../types/segments/path-segments.js';
+import { type SpecialSegmentsAllowedForBasename } from '../types/segments/special-segments-allowed-for-basename.js';
+import { type StemAndExtTuple } from '../types/stem-and-ext-tuple.js';
 import { isPath } from './functions/is-path.js';
 
 let BYPASS_PATH_CONSTRUCT: boolean = false;
 
 function createPathFromPathInstance(
   instance: Path,
-  segments: PathSegments = instance.segments,
+  segments: PathSegments /* = instance.segments*/,
   config: PathPlatformConfig = instance.config,
 ): Path {
   BYPASS_PATH_CONSTRUCT = true;
@@ -95,7 +95,7 @@ export class Path {
       } else if (isObject(config)) {
         this.config = Object.isFrozen(config) ? config : Object.freeze({ ...config });
       } else {
-        throw new TypeError('Expected IPathPlatformConfig or void as second input.');
+        throw new TypeError('Expected PathPlatformConfig or void as second input.');
       }
 
       if (typeof path === 'string') {

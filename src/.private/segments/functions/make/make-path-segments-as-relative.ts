@@ -1,5 +1,5 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import {
   forcePathSegmentsAsRelative,
   type ForcePathSegmentsAsRelativeOptions,

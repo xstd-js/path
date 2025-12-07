@@ -1,4 +1,4 @@
-import type { PathPlatformConfig } from '../../../types/platform-config/path-platform-config.js';
+import { type PathPlatformConfig } from '../../../types/platform-config/path-platform-config.js';
 import { SLASH_PATTERN } from './slash-regexp.constant.js';
 
 // on posix, root startsWith '/', so the part before is the empty string

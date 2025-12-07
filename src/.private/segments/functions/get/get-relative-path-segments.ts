@@ -1,5 +1,5 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import {
   pushSegmentIntoMutablePathSegments,
   type PushSegmentIntoMutablePathSegmentsOptions,
@@ -9,7 +9,7 @@ import { getCommonBaseOfManyPathSegments } from './get-common-base-of-many-path-
 export interface GetRelativePathSegmentsOptions extends PushSegmentIntoMutablePathSegmentsOptions {}
 
 /**
- * Returns the relative `IPathSegments` between `from` and `to`:
+ * Returns the relative `PathSegments` between `from` and `to`:
  *  - if no common base path => `[]`
  *  - else `['..' | '.', ...]`
  */

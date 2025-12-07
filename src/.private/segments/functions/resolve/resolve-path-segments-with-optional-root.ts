@@ -1,4 +1,4 @@
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import {
   getProcessPathSegments,
   type GetProcessPathSegmentsOptions,
@@ -10,7 +10,8 @@ import {
 import { resolvePathSegments, type ResolvePathSegmentsOptions } from './resolve-path-segments.js';
 
 export interface ResolvePathSegmentsWithOptionalRootOptions
-  extends GetProcessPathSegmentsOptions,
+  extends
+    GetProcessPathSegmentsOptions,
     IsAbsolutePathSegmentsOptions,
     ResolvePathSegmentsOptions {}
 

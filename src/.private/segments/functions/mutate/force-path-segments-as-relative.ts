@@ -1,4 +1,4 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
 export interface ForcePathSegmentsAsRelativeOptions {

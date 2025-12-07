@@ -1,6 +1,6 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
-import type { PathSegment } from '../../../../types/segments/segment/path-segment.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegment } from '../../../../types/segments/segment/path-segment.js';
 
 /**
  * Extracts the common base from many `PathSegments`:

@@ -1,4 +1,4 @@
-import type { WindowsPathPlatformConfig } from '../../../types/platform-config/windows-path-platform-config.js';
+import { type WindowsPathPlatformConfig } from '../../../types/platform-config/windows-path-platform-config.js';
 import { SLASH_PATTERN, SLASH_UNWRAPPED_PATTERN } from './slash-regexp.constant.js';
 
 // on windows, root startsWith 'letter:';

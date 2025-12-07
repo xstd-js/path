@@ -1,5 +1,5 @@
-import type { PathSegment } from '../../../../../types/segments/segment/path-segment.js';
-import type { SpecialSegmentsAllowedForBasename } from '../../../../../types/segments/special-segments-allowed-for-basename.js';
+import { type PathSegment } from '../../../../../types/segments/segment/path-segment.js';
+import { type SpecialSegmentsAllowedForBasename } from '../../../../../types/segments/special-segments-allowed-for-basename.js';
 import { isRelativePathSegment } from '../is/is-relative-path-segement.js';
 import { isRootPathSegment } from '../is/is-root-path-segement.js';
 import { getBasenameOfEntryPathSegment } from './get-basename-of-entry-path-segment.js';

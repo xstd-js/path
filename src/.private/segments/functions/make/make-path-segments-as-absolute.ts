@@ -1,9 +1,9 @@
-import { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import { PathSegments } from '../../../../types/segments/path-segments.js';
-import { PathSegment } from '../../../../types/segments/segment/path-segment.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegment } from '../../../../types/segments/segment/path-segment.js';
 import {
   forcePathSegmentsAsAbsolute,
-  ForcePathSegmentsAsAbsoluteOptions,
+  type ForcePathSegmentsAsAbsoluteOptions,
 } from '../mutate/force-path-segments-as-absolute.js';
 
 export interface MakePathSegmentsAsAbsoluteOptions extends ForcePathSegmentsAsAbsoluteOptions {}

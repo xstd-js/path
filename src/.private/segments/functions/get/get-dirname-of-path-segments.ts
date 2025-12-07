@@ -1,4 +1,4 @@
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import { isPureParentDirectoryPathSegments } from '../is/is-pure-parent-directory-path-segments.js';
 
 /**

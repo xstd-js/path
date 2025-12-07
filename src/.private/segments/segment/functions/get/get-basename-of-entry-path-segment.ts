@@ -1,4 +1,4 @@
-import type { PathSegment } from '../../../../../types/segments/segment/path-segment.js';
+import { type PathSegment } from '../../../../../types/segments/segment/path-segment.js';
 
 /**
  * Returns the basename of a segment, without 'ext' if provided

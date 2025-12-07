@@ -1,5 +1,5 @@
-import type { PathSegment } from '../../../../../types/segments/segment/path-segment.js';
-import type { StemAndExtTuple } from '../../../../../types/stem-and-ext-tuple.js';
+import { type PathSegment } from '../../../../../types/segments/segment/path-segment.js';
+import { type StemAndExtTuple } from '../../../../../types/stem-and-ext-tuple.js';
 
 /**
  * Returns the stem (file name without extension) and extension of 'basename'

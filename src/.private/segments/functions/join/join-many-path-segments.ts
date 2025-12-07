@@ -1,12 +1,12 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import {
   isAbsolutePathSegments,
   type IsAbsolutePathSegmentsOptions,
 } from '../is/is-absolute-path-segments.js';
 import { pushSegmentIntoMutablePathSegments } from '../mutate/push-segment-into-mutable-path-segments.js';
 
-export interface IJoinManyPathSegmentsOptions extends IsAbsolutePathSegmentsOptions {
+export interface JoinManyPathSegmentsOptions extends IsAbsolutePathSegmentsOptions {
   readonly strict?: boolean;
 }
 
@@ -16,7 +16,7 @@ export interface IJoinManyPathSegmentsOptions extends IsAbsolutePathSegmentsOpti
  */
 export function joinManyPathSegments(
   paths: readonly PathSegments[],
-  { strict = true, ...options }: IJoinManyPathSegmentsOptions,
+  { strict = true, ...options }: JoinManyPathSegmentsOptions,
 ): PathSegments {
   const pathsLength: number = paths.length;
   if (pathsLength === 0) {

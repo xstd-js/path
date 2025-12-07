@@ -1,4 +1,4 @@
-import type { PathPlatformConfig } from '../../../types/platform-config/path-platform-config.js';
+import { type PathPlatformConfig } from '../../../types/platform-config/path-platform-config.js';
 import {
   POSIX_DELIMITER_PATTERN,
   POSIX_INVALID_PATH_SEGMENT_PATTERN_PATTERN,

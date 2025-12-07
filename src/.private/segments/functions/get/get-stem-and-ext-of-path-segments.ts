@@ -1,5 +1,5 @@
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
-import type { StemAndExtTuple } from '../../../../types/stem-and-ext-tuple.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
+import { type StemAndExtTuple } from '../../../../types/stem-and-ext-tuple.js';
 import { getStemAndExtEntryPathSegment } from '../../segment/functions/get/get-stem-and-ext-entry-path-segment.js';
 import { getBasenameOfPathSegments } from './get-basename-of-path-segments.js';
 

@@ -1,5 +1,5 @@
-import type { MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
-import type { PathSegment } from '../../../../types/segments/segment/path-segment.js';
+import { type MutablePathSegments } from '../../../../types/segments/mutable-path-segments.js';
+import { type PathSegment } from '../../../../types/segments/segment/path-segment.js';
 import { isRootPathSegment } from '../../segment/functions/is/is-root-path-segement.js';
 
 export interface ForcePathSegmentsAsAbsoluteOptions {

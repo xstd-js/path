@@ -3,15 +3,10 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./dist",
-    "downlevelIteration": false,
-    "emitDecoratorMetadata": false,
-    "importHelpers": false,
-    "noEmitHelpers": false,
-    "noLib": false,
-    "outDir": "dist",
-    "preserveConstEnums": false,
-    "pretty": true,
-    "removeComments": false,
-    "sourceMap": true
-  }
+    "outDir": "dist"
+  },
+  "include": [
+    "src/index.ts",
+    "src/index.protected.ts"
+  ]
 }

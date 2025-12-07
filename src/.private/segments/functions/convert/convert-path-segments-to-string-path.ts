@@ -1,4 +1,4 @@
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 import { isRootPathSegments, type IsRootPathSegmentsOptions } from '../is/is-root-path-segments.js';
 
 export interface PathSegmentsToStringPathOptions extends IsRootPathSegmentsOptions {

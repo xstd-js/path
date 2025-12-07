@@ -1,4 +1,4 @@
-import type { UncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.js';
+import { type UncheckedPathSegments } from '../../../../types/segments/unchecked-path-segments.js';
 import { SLASH_REGEXP } from '../../../platform-config/constants/slash-regexp.constant.js';
 
 export interface ConvertStringPathToUncheckedPathSegmentsOptions {

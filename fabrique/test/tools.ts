@@ -1,6 +1,6 @@
 export namespace testTools {
   export function sleep(t: number): Promise<void> {
-    return new Promise((_) => setTimeout(_, t));
+    return new Promise((resolve) => setTimeout(resolve, t));
   }
 
   export function polyfillRequestIdleCallback(): void {
@@ -14,5 +14,13 @@ export namespace testTools {
     globalThis.cancelIdleCallback ??= (handle: number): void => {
       clearTimeout(handle);
     };
+  }
+
+  export function gc(): void {
+    if (typeof (globalThis as any).gc === 'function') {
+      return (globalThis as any).gc!();
+    } else {
+      throw new Error('Missing `gc` function. Did you `--expose-gc` ?');
+    }
   }
 }

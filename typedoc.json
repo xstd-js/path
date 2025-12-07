@@ -1,0 +1,18 @@
+{
+  "name": "Documentation",
+  "entryPoints": ["src/**/*.ts"],
+  "readme": "README.md",
+  "exclude": [
+    "src/**/*.{test,bench,protected,private}.ts",
+    "src/**/*.{protected,private}/**/*.ts"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true
+  },
+  "outputs": [
+    {
+      "name": "html",
+      "path": "./docs"
+    }
+  ]
+}

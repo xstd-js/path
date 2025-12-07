@@ -1,4 +1,4 @@
-import type { PathSegments } from '../../../../types/segments/path-segments.js';
+import { type PathSegments } from '../../../../types/segments/path-segments.js';
 
 /**
  * Returns `true` if `segmentsA` and `segmentB` are equivalent.

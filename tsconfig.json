@@ -1,37 +1,64 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "alwaysStrict": true,
-    "experimentalDecorators": true,
+    /* Build */
+    "target": "ESNext",
+    "module": "NodeNext",
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "module": "NodeNext",
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "importHelpers": false,
+    "noEmitHelpers": false,
+    "pretty": true,
+    "removeComments": false,
+    "downlevelIteration": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "stripInternal": false,
+    "preserveConstEnums": false,
+    "alwaysStrict": true,
+
+    /* Mode */
+    "esModuleInterop": true,
     "moduleResolution": "NodeNext",
-    "noFallthroughCasesInSwitch": false,
+    "allowImportingTsExtensions": false,
+    "isolatedModules": false,
+    "moduleDetection": "force",
+    "noEmit": false,
+    "allowSyntheticDefaultImports": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitUseStrict": false,
-    "noUnusedLocals": false,
-    "strict": true,
+    "noLib": false,
+    "noPropertyAccessFromIndexSignature": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "stripInternal": false,
-    "target": "esnext",
-    "typeRoots": [
-      "node_modules/@types"
-    ]
   },
   "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
+    "src/**/*.ts"
   ]
 }

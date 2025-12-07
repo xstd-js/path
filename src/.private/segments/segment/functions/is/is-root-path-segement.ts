@@ -1,4 +1,4 @@
-import type { UncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.js';
+import { type UncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.js';
 
 /**
  * Returns true if 'segment' is a root segment.

@@ -1,4 +1,4 @@
-import type { UncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.js';
+import { type UncheckedPathSegment } from '../../../../../types/segments/segment/unchecked-path-segment.js';
 
 // TODO improve later
 // https://stackoverflow.com/questions/4814040/allowed-characters-in-filename
@@ -8,7 +8,7 @@ import type { UncheckedPathSegment } from '../../../../../types/segments/segment
  */
 export function isValidPathSegment(
   segment: UncheckedPathSegment,
-  invalidPathSegmentRegExp: RegExp = /[<>:"\/\\|?*]/,
+  invalidPathSegmentRegExp: RegExp /* = /[<>:"\/\\|?*]/*/,
 ): boolean {
   return segment !== '' && !invalidPathSegmentRegExp.test(segment);
 }
